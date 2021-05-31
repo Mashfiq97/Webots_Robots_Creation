@@ -1,0 +1,80 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 #include <webots/DistanceSensor.hpp>\
+#include <webots/Motor.hpp>\
+#include <webots/Robot.hpp>\
+\
+#include <webots/Camera.hpp>\
+\
+#define TIME_STEP 64\
+using namespace webots;\
+\
+int main(int argc, char **argv) \{\
+  \
+  Robot *robot = new Robot(); \
+    Motor *left_motor=robot->getMotor("Left Wheel Motor");\
+    Motor *right_motor=robot->getMotor("Right Wheel Motor");\
+    left_motor->setPosition(INFINITY);\
+    right_motor->setPosition(INFINITY);\
+    left_motor->setVelocity(0.0);\
+    right_motor->setVelocity(0.0);\
+\
+\
+\
+    DistanceSensor *right_ir=robot->getDistanceSensor("ds_right");\
+    right_ir->enable(TIME_STEP);\
+\
+    DistanceSensor *mid_ir=robot->getDistanceSensor("ds_middle");\
+    mid_ir->enable(TIME_STEP);\
+\
+    DistanceSensor *left_ir=robot->getDistanceSensor("ds_left");\
+    left_ir->enable(TIME_STEP);\
+\
+\
+  \
+  \
+  while (robot->step(TIME_STEP) != -1) \{\
+\
+\
+    double right_ir_val = right_ir->getValue();\
+    double mid_ir_val = mid_ir->getValue();\
+    double left_ir_val = left_ir->getValue();\
+\
+    double leftSpeed = -1.0;\
+    double rightSpeed = -1.0;\
+    \
+    if ((left_ir_val<700) && (right_ir_val<700) && (mid_ir_val>=700))\{\
+        left_motor->setVelocity(+leftSpeed);\
+        right_motor->setVelocity(+rightSpeed);\
+    \}\
+    if ((left_ir_val<700) && (right_ir_val>=700) && (mid_ir_val>=700))\{\
+        left_motor->setVelocity(+leftSpeed);\
+        right_motor->setVelocity(0.0);\
+    \}\
+    if ((left_ir_val>=700) && (right_ir_val<700) && (mid_ir_val>=700))\{\
+        left_motor->setVelocity(0.0);\
+        right_motor->setVelocity(+rightSpeed);\
+    \}\
+    if ((left_ir_val>=700) && (right_ir_val<700) && (mid_ir_val<700))\{\
+        left_motor->setVelocity(0.0);\
+        right_motor->setVelocity(+rightSpeed);\
+    \}\
+    if ((left_ir_val<700) && (right_ir_val>=700) && (mid_ir_val<700))\{\
+        left_motor->setVelocity(+leftSpeed);\
+        right_motor->setVelocity(0.0);\
+    \}\
+\
+    if ((left_ir_val<700) && (right_ir_val<700) && (mid_ir_val<700))\{\
+        left_motor->setVelocity(+leftSpeed);\
+        right_motor->setVelocity(+rightSpeed);\
+    \}\
+    \
+  \}\
+  delete robot;\
+  return 0;  // EXIT_SUCCESS\
+\}}

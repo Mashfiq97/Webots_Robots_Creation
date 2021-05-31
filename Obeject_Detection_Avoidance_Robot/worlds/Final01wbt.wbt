@@ -1,0 +1,819 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.29401987867767043 -0.8962772002081719 -0.33202332949563734 1.7998306566934354
+  position -11.68244418724304 12.307142239922264 -1.6937738182748818
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation -0.01 0 0
+  floorSize 8 8
+  floorAppearance Parquetry {
+    type "dark strip"
+    colorOverride 0 0 0
+    IBLStrength 0
+  }
+  wallThickness 0.08
+  wallHeight 0.3
+  wallAppearance BrushedAluminium {
+    colorOverride 0.376471 1 0.027451
+    IBLStrength 0
+  }
+}
+Robot {
+  translation -2.97626 0.193642 -3.59934
+  rotation 0.0026637594863647023 0.9984398372435067 0.05577450842955678 -0.8756612346629175
+  children [
+    Camera {
+      translation 0.25 0.09 -0.005
+      rotation 0 -1 0 1.618
+      children [
+        DEF camera Shape {
+          appearance PBRAppearance {
+          }
+          geometry Sphere {
+            radius 0.035
+            subdivision 5
+          }
+        }
+      ]
+      boundingObject USE camera
+      recognitionColors [
+        1 0 0
+      ]
+      fieldOfView 1
+      width 720
+      height 720
+      recognition Recognition {
+        maxRange 1000
+        frameThickness 2
+      }
+    }
+    DistanceSensor {
+      translation 0.26 0 -0.082
+      rotation 0 1 0 0.3926996938995747
+      children [
+        DEF leftSensor Shape {
+          appearance PBRAppearance {
+            baseColor 0.986282 0.0442817 0.107713
+          }
+          geometry Box {
+            size 0.02 0.05 0.05
+          }
+        }
+      ]
+      name "ds_left"
+      boundingObject USE leftSensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.15 1000 0
+      ]
+    }
+    DistanceSensor {
+      translation 0.26 0 0.07
+      rotation 0 1 0 -0.2617996938995747
+      children [
+        DEF rightSensor Shape {
+          appearance PBRAppearance {
+            baseColor 0.986282 0.0442817 0.107713
+          }
+          geometry Box {
+            size 0.02 0.05 0.05
+          }
+        }
+      ]
+      name "ds_right"
+      boundingObject USE rightSensor
+      physics Physics {
+      }
+      lookupTable [
+        0 0 0
+        0.15 1000 0
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -332.76713914461146
+        axis 0 0 1
+        anchor -0.14 -0.07 0.17
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.14 -0.07 0.17
+        rotation -0.9856207658217931 -0.11951177031427396 0.11945142417405587 1.5852705512069296
+        children [
+          DEF RightBackWheel Shape {
+            appearance PBRAppearance {
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.1
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE RightBackWheel
+        physics DEF RightBackWheelPhysics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -393.433596171743
+        axis 0 0 1
+        anchor 0.15 -0.05 -0.17
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.1500000000000463 -0.049999999999949855 -0.16999999999999998
+        rotation 0.2624931792312218 0.6823124159647331 -0.6823101185512747 3.654994898554552
+        children [
+          DEF LeftWheel Shape {
+            appearance PBRAppearance {
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.1
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE LeftWheel
+        physics DEF LeftWheelPhysics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -298.06165966462936
+        axis 0 0 1
+        anchor 0.15 -0.05 0.17
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.1424028466447261 -0.03149910107869208 0.17
+        rotation 0.13819071394515922 -0.7003237213544544 0.7003213632951488 3.416233733729108
+        children [
+          DEF RightWheel Shape {
+            appearance PBRAppearance {
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.1
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE RightWheel
+        physics DEF RightWheelPhysics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -431.78432658273334
+        axis 0 0 1
+        anchor -0.15 -0.05 -0.17
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation -0.14998000037518025 -0.05004305985576812 -0.17005168040081406
+        rotation -0.5064940942669922 -0.6098943823020391 0.6095019072234913 2.204389630641244
+        children [
+          DEF LeftBackWheel Shape {
+            appearance PBRAppearance {
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.1
+            }
+          }
+        ]
+        boundingObject USE LeftBackWheel
+        physics DEF LeftBackWheelPhysics Physics {
+        }
+      }
+    }
+    DEF BODY Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.5 0.14 0.24
+      }
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+  }
+  controller "my_controller01"
+}
+DEF c_02 Solid {
+  translation -0.968553 0.249914 2.58261
+  rotation 1.7602419549028763e-05 0.9999999998038372 -9.08186452062908e-06 0.04074524766939967
+  children [
+    DEF BALL_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColor 0.6 0.4 0.2
+        roughness 0.3
+        metalness 0
+      }
+      geometry Sphere {
+        radius 0.25
+        subdivision 3
+      }
+    }
+  ]
+  name "ball"
+  model "ball"
+  boundingObject USE BALL_SHAPE
+  physics Physics {
+    density -1
+    mass 0.055
+    centerOfMass [
+      0 -0.0001 0
+    ]
+    inertiaMatrix [
+      2.3e-05 2.3e-05 2.3e-05
+      0 0 0
+    ]
+    damping Damping {
+      linear 0.17
+      angular 0.33
+    }
+  }
+  recognitionColors [
+    1 0 0
+  ]
+}
+DEF c_01 Solid {
+  translation -1.91664 0.249914 -2.22148
+  rotation -1.794696384171965e-05 0.9999999949958401 9.841862834246636e-05 -0.047859270793066365
+  children [
+    DEF BALL_SHAPE Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.500008 0 0.500008
+        }
+      }
+      geometry Sphere {
+        radius 0.25
+        subdivision 3
+      }
+    }
+  ]
+  name "ball(2)"
+  model "ball"
+  boundingObject USE BALL_SHAPE
+  physics Physics {
+    density -1
+    mass 0.055
+    centerOfMass [
+      0 -0.0001 0
+    ]
+    inertiaMatrix [
+      2.3e-05 2.3e-05 2.3e-05
+      0 0 0
+    ]
+    damping Damping {
+      linear 0.17
+      angular 0.33
+    }
+  }
+  recognitionColors [
+    1 0 0
+  ]
+}
+DEF barrel03 Solid {
+  translation 0 0.42 -1.84
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.985534 0.00929274 0.999176
+        baseColorMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_base_color.jpg"
+          ]
+        }
+        roughnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_roughness.jpg"
+          ]
+        }
+        metalnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_metalness.jpg"
+          ]
+        }
+        normalMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_normal.jpg"
+          ]
+        }
+        occlusionMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_occlusion.jpg"
+          ]
+        }
+      }
+      geometry Cylinder {
+        bottom FALSE
+        height 0.88
+        radius 0.305
+        top FALSE
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_base_color.jpg"
+          ]
+        }
+        roughnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_roughness.jpg"
+          ]
+        }
+        metalnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_metalness.jpg"
+          ]
+        }
+        normalMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_normal.jpg"
+          ]
+        }
+        occlusionMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_occlusion.jpg"
+          ]
+        }
+      }
+      geometry Cylinder {
+        bottom FALSE
+        height 0.88
+        radius 0.305
+        side FALSE
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_base_color.jpg"
+          ]
+        }
+        roughnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_roughness.jpg"
+          ]
+        }
+        metalness 0
+        normalMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_normal.jpg"
+          ]
+        }
+        occlusionMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_occlusion.jpg"
+          ]
+        }
+      }
+      geometry Cylinder {
+        height 0.88
+        radius 0.305
+        side FALSE
+        top FALSE
+      }
+    }
+  ]
+  name "oil barrel"
+  model "oil barrel"
+  boundingObject Cylinder {
+    height 0.88
+    radius 0.305
+  }
+  recognitionColors [
+    0.986252 0.00712596 0.0274357
+  ]
+}
+DEF barrel02 Solid {
+  translation 1.16 0.52 0.83
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_base_color.jpg"
+          ]
+        }
+        roughnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_roughness.jpg"
+          ]
+        }
+        metalnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_metalness.jpg"
+          ]
+        }
+        normalMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_normal.jpg"
+          ]
+        }
+        occlusionMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_occlusion.jpg"
+          ]
+        }
+      }
+      geometry Cylinder {
+        bottom FALSE
+        height 0.88
+        radius 0.305
+        top FALSE
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_base_color.jpg"
+          ]
+        }
+        roughnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_roughness.jpg"
+          ]
+        }
+        metalnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_metalness.jpg"
+          ]
+        }
+        normalMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_normal.jpg"
+          ]
+        }
+        occlusionMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_occlusion.jpg"
+          ]
+        }
+      }
+      geometry Cylinder {
+        bottom FALSE
+        height 0.88
+        radius 0.305
+        side FALSE
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_base_color.jpg"
+          ]
+        }
+        roughnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_roughness.jpg"
+          ]
+        }
+        metalness 0
+        normalMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_normal.jpg"
+          ]
+        }
+        occlusionMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_occlusion.jpg"
+          ]
+        }
+      }
+      geometry Cylinder {
+        height 0.88
+        radius 0.305
+        side FALSE
+        top FALSE
+      }
+    }
+  ]
+  name "oil barrel(1)"
+  model "oil barrel"
+  boundingObject Cylinder {
+    height 0.88
+    radius 0.305
+  }
+  recognitionColors [
+    0.986252 0.00712596 0.0274357
+  ]
+}
+DEF barrel_01 Solid {
+  translation 1.93 0.45 -2.94
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_base_color.jpg"
+          ]
+        }
+        roughnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_roughness.jpg"
+          ]
+        }
+        metalnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_metalness.jpg"
+          ]
+        }
+        normalMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_normal.jpg"
+          ]
+        }
+        occlusionMap ImageTexture {
+          url [
+            "textures/oil_barrel_side_occlusion.jpg"
+          ]
+        }
+      }
+      geometry Cylinder {
+        bottom FALSE
+        height 0.88
+        radius 0.305
+        top FALSE
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_base_color.jpg"
+          ]
+        }
+        roughnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_roughness.jpg"
+          ]
+        }
+        metalnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_metalness.jpg"
+          ]
+        }
+        normalMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_normal.jpg"
+          ]
+        }
+        occlusionMap ImageTexture {
+          url [
+            "textures/oil_barrel_top_occlusion.jpg"
+          ]
+        }
+      }
+      geometry Cylinder {
+        bottom FALSE
+        height 0.88
+        radius 0.305
+        side FALSE
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_base_color.jpg"
+          ]
+        }
+        roughnessMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_roughness.jpg"
+          ]
+        }
+        metalness 0
+        normalMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_normal.jpg"
+          ]
+        }
+        occlusionMap ImageTexture {
+          url [
+            "textures/oil_barrel_bottom_occlusion.jpg"
+          ]
+        }
+      }
+      geometry Cylinder {
+        height 0.88
+        radius 0.305
+        side FALSE
+        top FALSE
+      }
+    }
+  ]
+  name "oil barrel(2)"
+  model "oil barrel"
+  boundingObject Cylinder {
+    height 0.88
+    radius 0.305
+  }
+  recognitionColors [
+    0.986252 0.00712596 0.0274357
+  ]
+}
+DEF yellow_S_01 Solid {
+  translation -1.90011 0.20095 -0.31003
+  rotation -4.0914009988620043e-13 1 1.7672055318072798e-12 0.0001823040071433934
+  children [
+    DEF BOX1 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.990417 0.500267 0.0328679
+        }
+      }
+      geometry Box {
+        size 0.5 0.5 0.5
+      }
+    }
+  ]
+  name "BOX"
+  boundingObject USE BOX1
+  physics Physics {
+  }
+  recognitionColors [
+    0.986252 0.00712596 0.0274357
+  ]
+}
+DEF green_S_01 Solid {
+  translation -1.13 0.20095000000000002 -3.65
+  rotation 0.8714852099502881 0.39512800856586305 -0.29049506998342944 1.9235904581828606e-17
+  children [
+    DEF BOX1 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.13135 0.99968 0.023621
+        }
+      }
+      geometry Box {
+        size 0.5 0.5 0.5
+      }
+    }
+  ]
+  name "BOX(5)"
+  boundingObject USE BOX1
+  physics Physics {
+  }
+  recognitionColors [
+    0.986252 0.00712596 0.0274357
+  ]
+}
+DEF w_S_01 Solid {
+  translation 2.58 0.20095 -0.92
+  rotation 0.8714852099502881 0.39512800856586305 -0.29049506998342944 1.9235904581828606e-17
+  children [
+    DEF BOX1 Shape {
+      appearance Appearance {
+        material Material {
+        }
+      }
+      geometry Box {
+        size 0.5 0.5 0.5
+      }
+    }
+  ]
+  name "BOX(2)"
+  boundingObject USE BOX1
+  physics Physics {
+  }
+  recognitionColors [
+    0.986252 0.00712596 0.0274357
+  ]
+}
+DEF red_S_01 Solid {
+  translation -2.86 0.20095 2.79
+  rotation 0.8714852099502881 0.39512800856586305 -0.29049506998342944 1.9235904581828606e-17
+  children [
+    DEF BOX1 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.986252 0.00712596 0.0274357
+        }
+      }
+      geometry Box {
+        size 0.5 0.5 0.5
+      }
+    }
+  ]
+  name "BOX(1)"
+  boundingObject USE BOX1
+  physics Physics {
+  }
+  recognitionColors [
+    0.986252 0.00712596 0.0274357
+  ]
+}
+DEF P_Cylinder_01 Solid {
+  translation -3.36 0.222818 -1.65
+  rotation -0.9106517607468011 0.188648265824384 -0.3675938008865267 -7.60283569526672e-17
+  children [
+    DEF C1 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.985534 0.00929274 0.999176
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.21
+      }
+    }
+  ]
+  name "BOX(3)"
+  boundingObject USE C1
+  physics Physics {
+  }
+  recognitionColors [
+    0.986252 0.00712596 0.0274357
+  ]
+}
+DEF P_Cylinder_02 Solid {
+  translation 0.19 0.22281762089222665 -3.5
+  rotation 0.9244635589361545 0.15942029389084633 -0.34634130290055737 7.132615960939022e-17
+  children [
+    DEF C1 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.985534 0.00929274 0.999176
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.21
+      }
+    }
+  ]
+  name "BOX(6)"
+  boundingObject USE C1
+  physics Physics {
+  }
+  recognitionColors [
+    0.986252 0.00712596 0.0274357
+  ]
+}
+DEF redCylinder Solid {
+  translation 2.72 0.22281762089222665 2.87
+  rotation -0.9106517607468011 0.188648265824384 -0.3675938008865267 -7.60283569526672e-17
+  children [
+    DEF C1 Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.986252 0.00712596 0.0274357
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.21
+      }
+    }
+  ]
+  name "BOX(4)"
+  boundingObject USE C1
+  physics Physics {
+  }
+  recognitionColors [
+    0.986252 0.00712596 0.0274357
+  ]
+}
